@@ -12,12 +12,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity // diz ao JPA que essa e uma classe que deve ser persistida no banco de dados
-@Table(name = "produto") // diz ao JPA que essa classe equivale a tabela categoria
+@Table(name = "tb_produto") // diz ao JPA que essa classe equivale a tabela categoria
 public class Produto {
 
 	@Id // diz ao JPA que essa atributo e equivalente a chave privamaria da tabela
 	@Column(name = "id_produto")
-	private String id;
+	private Long id;
 	
 	@Column(name = "nome_produto", nullable = false)
 	private String nome;
@@ -35,17 +35,17 @@ public class Produto {
 			joinColumns = { @JoinColumn(name = "id_produto") },
 			inverseJoinColumns = { @JoinColumn(name = "id_endereco") }
 	)
-	private Set<Endereco> listaEndereco;
+	private Set<Estabelecimento> listaEndereco;
 
 	public Produto() {
 		super();
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -73,11 +73,11 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-	public Set<Endereco> getListaEndereco() {
+	public Set<Estabelecimento> getListaEndereco() {
 		return listaEndereco;
 	}
 
-	public void setListaEndereco(Set<Endereco> listaEndereco) {
+	public void setListaEndereco(Set<Estabelecimento> listaEndereco) {
 		this.listaEndereco = listaEndereco;
 	}
 }

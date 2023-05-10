@@ -4,6 +4,8 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -16,6 +18,7 @@ import jakarta.persistence.Table;
 public class Produto {
 
 	@Id // diz ao JPA que essa atributo e equivalente a chave privamaria da tabela
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
 	private Long id;
 	
@@ -24,6 +27,9 @@ public class Produto {
 
 	@Column(name = "preco_produto", nullable = false)
 	private Double preco;
+	
+	@Column(name = "volume_produto", nullable = false)
+	private String volumeProduto;
 
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
@@ -40,6 +46,32 @@ public class Produto {
 	public Produto() {
 		super();
 	}
+	
+
+	public Produto(Long id, String nome, Double preco, String volumeProduto, Categoria categoria,
+			Set<Estabelecimento> listaEndereco) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.preco = preco;
+		this.volumeProduto = volumeProduto;
+		this.categoria = categoria;
+		this.listaEndereco = listaEndereco;
+	}
+
+
+
+	public String getVolumeProduto() {
+		return volumeProduto;
+	}
+
+
+
+	public void setVolumeProduto(String volumeProduto) {
+		this.volumeProduto = volumeProduto;
+	}
+
+
 
 	public Long getId() {
 		return id;

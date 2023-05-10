@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Categoria {
 
 	@Id // diz ao JPA que essa atributo e equivalente a chave privamaria da tabela
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Incremento
 	@Column(name = "id_categoria")
 	private Long idCategoria;
 	
@@ -22,6 +22,16 @@ public class Categoria {
 	public Categoria() {
 		super();
 	}
+	
+	
+
+	public Categoria(Long idCategoria, String tipoCategoria) {
+		super();
+		this.idCategoria = idCategoria;
+		this.tipoCategoria = tipoCategoria;
+	}
+
+
 
 	public Long getIdCategoria() {
 		return idCategoria;

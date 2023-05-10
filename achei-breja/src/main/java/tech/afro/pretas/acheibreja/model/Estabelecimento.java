@@ -33,6 +33,16 @@ public class Estabelecimento {
 	public Estabelecimento() {
 		super();
 	}
+	
+	public Estabelecimento(Long idEstabelecimento, String logradouro, String bairro, String estabelecimento,
+			Set<Produto> listaProduto) {
+		super();
+		this.idEstabelecimento = idEstabelecimento;
+		this.logradouro = logradouro;
+		this.bairro = bairro;
+		this.estabelecimento = estabelecimento;
+		this.listaProduto = listaProduto;
+	}
 
 	public Long getIdEndereco() {
 		return idEstabelecimento;

@@ -3,6 +3,8 @@ package tech.afro.pretas.acheibreja.model;
 import java.util.Calendar;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,6 +15,7 @@ import jakarta.persistence.Table;
 public class Requisicao {
 
 	@Id // diz ao JPA que essa atributo e equivalente a chave privamaria da tabela
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_requisicao")
 	private Long idRequisicao;
 	
@@ -33,6 +36,20 @@ public class Requisicao {
 	public Requisicao() {
 		super();
 	}
+	
+	
+
+	public Requisicao(Long idRequisicao, Usuario usuario, Produto produto, Long idQuantidadeRequisicao,
+			Calendar dataRequisicao) {
+		super();
+		this.idRequisicao = idRequisicao;
+		this.usuario = usuario;
+		this.produto = produto;
+		this.idQuantidadeRequisicao = idQuantidadeRequisicao;
+		this.dataRequisicao = dataRequisicao;
+	}
+
+
 
 	public Long getIdRequisicao() {
 		return idRequisicao;

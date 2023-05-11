@@ -1,5 +1,6 @@
 package tech.afro.pretas.acheibreja.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -41,6 +42,9 @@ public class Produto {
 			joinColumns = { @JoinColumn(name = "id_produto") },
 			inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") }
 	)
+	
+	// define o atributo listaEndereco do tipo Set (Conjunto), sendo que
+	// esse conjunto só aceita objetos do tipo Estabelecimento
 	private Set<Estabelecimento> listaEstabelecimento;
 
 	public Produto() {
@@ -48,15 +52,14 @@ public class Produto {
 	}
 	
 
-	public Produto(Long id, String nome, Double preco, String volumeProduto, Categoria categoria,
-			Set<Estabelecimento> listaEstabelecimento) {
+	public Produto(Long id, String nome, Double preco, String volumeProduto, Categoria categoria) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
 		this.volumeProduto = volumeProduto;
 		this.categoria = categoria;
-		this.listaEstabelecimento = listaEstabelecimento;
+		this.listaEstabelecimento = new HashSet<Estabelecimento>();
 	}
 
 

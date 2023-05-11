@@ -36,8 +36,6 @@ public class Requisicao {
 	public Requisicao() {
 		super();
 	}
-	
-	
 
 	public Requisicao(Long idRequisicao, Usuario usuario, Produto produto, Long idQuantidadeRequisicao,
 			Calendar dataRequisicao) {
@@ -48,8 +46,6 @@ public class Requisicao {
 		this.idQuantidadeRequisicao = idQuantidadeRequisicao;
 		this.dataRequisicao = dataRequisicao;
 	}
-
-
 
 	public Long getIdRequisicao() {
 		return idRequisicao;

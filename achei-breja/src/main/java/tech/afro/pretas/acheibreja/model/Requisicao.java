@@ -1,13 +1,17 @@
 package tech.afro.pretas.acheibreja.model;
 
 import java.util.Calendar;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity // diz ao JPA que essa e uma classe que deve ser persistida no banco de dados
@@ -19,12 +23,14 @@ public class Requisicao {
 	@Column(name = "id_requisicao")
 	private Long idRequisicao;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_usuario")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario", nullable = false)
+	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Usuario usuario;
 
-	@ManyToOne
-	@JoinColumn(name = "id_produto")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_produto", nullable = false)
+	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Produto produto;
 	
 	@Column(name = "id_quantidade_requisicao")
@@ -36,7 +42,7 @@ public class Requisicao {
 	public Requisicao() {
 		super();
 	}
-
+	
 	public Requisicao(Long idRequisicao, Usuario usuario, Produto produto, Long idQuantidadeRequisicao,
 			Calendar dataRequisicao) {
 		super();
@@ -85,5 +91,10 @@ public class Requisicao {
 
 	public void setDataRequisicao(Calendar dataRequisicao) {
 		this.dataRequisicao = dataRequisicao;
+	}
+
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return idRequisicao;
 	}
 }

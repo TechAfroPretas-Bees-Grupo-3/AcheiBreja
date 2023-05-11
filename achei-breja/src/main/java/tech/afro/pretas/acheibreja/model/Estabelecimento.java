@@ -27,7 +27,7 @@ public class Estabelecimento {
 	@Column(nullable = false)
 	private String estabelecimento;
 	
-	@ManyToMany(mappedBy = "listaEndereco")
+	@ManyToMany(mappedBy = "listaEstabelecimento")
 	private Set<Produto> listaProduto;
 
 	public Estabelecimento() {

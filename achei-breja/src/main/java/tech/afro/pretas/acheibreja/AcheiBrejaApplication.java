@@ -59,10 +59,10 @@ public class AcheiBrejaApplication implements CommandLineRunner {
 		usuarioRepository.saveAll(Arrays.asList(u1,u2,u3,u4,u5));
 		
 		//Elementos tabela produto
-		Produto p1 = new Produto(null, "Patagonia Bohemian", 5.79, "350ml", c1, null);
-		Produto p2 = new Produto(null, "Quilmes", 7.90, "473ml", c2, null);
-		Produto p3 = new Produto(null, "Budweiser zero", 3.99, "269ml", c2, null);
-		Produto p4 = new Produto(null, "Colorado Indica", 4.72, "350ml", c3, null);
+		Produto p1 = new Produto(null, "Patagonia Bohemian", 5.79, "350ml", c1,null);
+		Produto p2 = new Produto(null, "Quilmes", 7.90, "473ml", c2,null);
+		Produto p3 = new Produto(null, "Budweiser zero", 3.99, "269ml", c2,null);
+		Produto p4 = new Produto(null, "Colorado Indica", 4.72, "350ml", c3,null);
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
 		
 		//Elementos tabela estabelecimento

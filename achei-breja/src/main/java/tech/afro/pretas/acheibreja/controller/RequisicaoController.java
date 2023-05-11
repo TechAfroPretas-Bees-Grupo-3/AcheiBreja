@@ -54,9 +54,10 @@ public class RequisicaoController {
 
 	    @ResponseBody
 	    @Transactional //e usada para definir os requisitos da transacao
-	    @RequestMapping(path = "/criarRequisicao", method = RequestMethod.POST)
+	    @RequestMapping(path = "/requisicao/criarRequisicao", method = RequestMethod.POST)
 	    @ResponseStatus(HttpStatus.CREATED)
 	    public ResponseEntity<Requisicao> salvar(@RequestBody Requisicao requisicao) {
+	    	System.out.println("ESTOU AQUI!!!!!!!");
 	        Logger logger = LoggerFactory.getLogger(getClass());
 	        logger.info("Recebendo requisição: {}", requisicao);
 	        Usuario usuario = usuarioRepository.findById(requisicao.getUsuario().getId()).orElseThrow();
@@ -76,26 +77,6 @@ public class RequisicaoController {
 	                .body(requisicaoSalva);
 	    }
 	    
-//	    @ResponseBody
-//		@Transactional //e usada para definir os requisitos da transacao
-//		@RequestMapping(path = "/criarRequisicao", method = RequestMethod.POST)
-//	    public void salvar(@RequestBody Requisicao requisicao) {
-//	    	Logger logger = LoggerFactory.getLogger(getClass());
-//	        logger.info("Recebendo requisição: {}", requisicao);
-//	    	Usuario usuario = usuarioRepository.findById(requisicao.getUsuario().getId()).orElseThrow();
-//	        Produto produto = produtoRepository.findById(requisicao.getProduto().getId().toString()).orElseThrow();
-//	        
-//	        Requisicao request = new Requisicao();
-//	        request.setIdRequisicao(requisicao.getId());
-//	        request.setUsuario(usuario);
-//	        request.setProduto(produto);
-//	        request.setIdQuantidadeRequisicao(requisicao.getIdQuantidadeRequisicao());
-//	        request.setDataRequisicao(requisicao.getDataRequisicao());
-//	        
-//	        
-//	        requisicaoService.salvar(request);
-//	        ResponseEntity.created(URI.create("/api/requisicoes/" + request.getId())).body(request);
-//	    }
 	    
 
 	    @DeleteMapping("/{id}")
@@ -105,35 +86,7 @@ public class RequisicaoController {
 	    }
 	
 
-//	@Autowired
-//	private RequisicaoRepository requisicaoRepository;
-//	
-//
-//	@ResponseBody
-//	@RequestMapping("/tb_requisicao")
-//	public List<Requisicao> criar(){
-//		
-//		Calendar dataRequisicao = Calendar.getInstance();
-//		Long idRequisicao = (long) 1;
-//		Usuario usuario = new Usuario();
-//		Produto produto = new Produto();
-//		Long idQuantidadeRequisicao = (long) 1;
-//		
-////		Requisicao requisicao = new Requisicao(idRequisicao, usuario, produto,
-////				idQuantidadeRequisicao, dataRequisicao);
-//		Requisicao requisicao = new Requisicao();
-//		
-//		return Arrays.asList(requisicao, requisicao, requisicao);
-//	}
-//	
-//	@ResponseBody
-//	@Transactional //e usada para definir os requisitos da transacao
-//	@RequestMapping(path = "/criarRequisicao", method = RequestMethod.POST)
-//	public void salvar(@RequestBody Requisicao requisicao) {
-//		
-//		requisicaoRepository.save(requisicao); //metodo save recebe nossa entidade (requisicao) como parametro e trata toda a logica de negocio para persistir no banco.
-//	}
-//	
+
 //	@ResponseBody
 //	@Transactional
 //	@RequestMapping(path = "/listarRequisicao", method = RequestMethod.GET)

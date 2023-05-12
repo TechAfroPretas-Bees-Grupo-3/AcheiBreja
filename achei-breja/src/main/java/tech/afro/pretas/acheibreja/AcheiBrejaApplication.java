@@ -37,7 +37,6 @@ public class AcheiBrejaApplication implements CommandLineRunner {
 		
 	}
 
-
 	@Override
 	public void run(String... args) throws Exception {
 		

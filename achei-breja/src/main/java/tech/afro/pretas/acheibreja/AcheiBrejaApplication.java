@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import tech.afro.pretas.acheibreja.model.Categoria;
 import tech.afro.pretas.acheibreja.model.Estabelecimento;
@@ -51,11 +52,12 @@ public class AcheiBrejaApplication implements CommandLineRunner {
 		categoriaRepository.save(c3);
 		
 		//Elementos tabela usuario
-		Usuario u1 = new Usuario(null, "Aisla Alcantara", "aisla@gmail.com", "abc123");
-		Usuario u2 = new Usuario(null, "Carolaine Marquezini", "carol@gmail.com", "abc123");
-		Usuario u3 = new Usuario(null, "Daiane Goncalves", "dai@gmail.com", "abc123");
-		Usuario u4 = new Usuario(null, "Marília Fileto ", "mari@gmail.com", "abc123");
-		Usuario u5 = new Usuario(null, "Viviane Neres", "vivi@gmail.com", "abc123");
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		Usuario u1 = new Usuario(null, "Aisla Alcantara", "aisla@gmail.com", encoder.encode("abc123"));
+		Usuario u2 = new Usuario(null, "Carolaine Marquezini", "carol@gmail.com", encoder.encode("abc123"));
+		Usuario u3 = new Usuario(null, "Daiane Goncalves", "dai@gmail.com", encoder.encode("abc123"));
+		Usuario u4 = new Usuario(null, "Marília Fileto ", "mari@gmail.com", encoder.encode("abc123"));
+		Usuario u5 = new Usuario(null, "Viviane Neres", "vivi@gmail.com", encoder.encode("abc123"));
 		usuarioRepository.saveAll(Arrays.asList(u1,u2,u3,u4,u5));
 		
 		//Elementos tabela produto

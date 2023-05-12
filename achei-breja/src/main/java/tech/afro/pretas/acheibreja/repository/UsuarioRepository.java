@@ -8,6 +8,6 @@ import tech.afro.pretas.acheibreja.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	Optional<Usuario> findByEmail(String userName);
+	Optional<Usuario> findByEmail(String email);
 
 }

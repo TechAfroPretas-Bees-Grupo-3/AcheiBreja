@@ -5,6 +5,7 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,9 +13,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity // diz ao JPA que essa e uma classe que deve ser persistida no banco de dados
-@Table(name = "tb_estabelecimento") // diz ao JPA que essa classe equivale a tabela categoria
+@Table(name = "tb_estabelecimento") // diz ao JPA que essa classe equivale a tabela tb_estabelecimento
 public class Estabelecimento {
-	@Id // diz ao JPA que essa atributo e equivalente a chave privamaria da tabela
+	@Id // diz ao JPA que esse atributo e equivalente a chave primaria da tabela
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment
 	@Column
 	private Long idEstabelecimento;
@@ -35,7 +36,7 @@ public class Estabelecimento {
 		super();
 	}
 	
-	//tirei o parametro do listaproduto e instanciei o conjunto hash set listaproduto para depois do objeto instanciado adicionar o elementos do conjunto (ovo ou a galinha) 
+	//tirei o parametro do listaproduto e instanciei o conjunto hash set listaproduto para depois do objeto instanciado adicionar o elemento do conjunto (ovo ou a galinha) 
 	public Estabelecimento(Long idEstabelecimento, String logradouro, String bairro, String estabelecimento) {
 		super();
 		this.idEstabelecimento = idEstabelecimento;
@@ -45,12 +46,12 @@ public class Estabelecimento {
 		this.listaProduto = new HashSet<Produto>();
 	}
 
-	public Long getIdEndereco() {
+	public Long getIdEstabelecimento() {
 		return idEstabelecimento;
 	}
 
-	public void setIdEndereco(Long idEndereco) {
-		this.idEstabelecimento = idEndereco;
+	public void setIdEstabelecimento(Long idEstabelecimento) {
+		this.idEstabelecimento = idEstabelecimento;
 	}
 
 	public String getLogradouro() {
@@ -69,6 +70,14 @@ public class Estabelecimento {
 		this.bairro = bairro;
 	}
 
+	public String getEstabelecimento() {
+		return estabelecimento;
+	}
+
+	public void setEstabelecimento(String estabelecimento) {
+		this.estabelecimento = estabelecimento;
+	}
+
 	public Set<Produto> getListaProduto() {
 		return listaProduto;
 	}
@@ -76,4 +85,5 @@ public class Estabelecimento {
 	public void setListaProduto(Set<Produto> listaProduto) {
 		this.listaProduto = listaProduto;
 	}
+
 }

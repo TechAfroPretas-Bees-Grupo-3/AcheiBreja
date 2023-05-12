@@ -18,7 +18,7 @@ public class Requisicao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_requisicao")
 	private Long idRequisicao;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
@@ -26,10 +26,10 @@ public class Requisicao {
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
 	private Produto produto;
-	
+
 	@Column(name = "id_quantidade_requisicao")
 	private Long idQuantidadeRequisicao;
-	
+
 	@Column(name = "data_requisicao")
 	private Calendar dataRequisicao;
 

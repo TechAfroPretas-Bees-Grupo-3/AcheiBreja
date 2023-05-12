@@ -1,4 +1,5 @@
 package tech.afro.pretas.acheibreja.model;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,27 +22,24 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
 	private Long id;
-	
+
 	@Column(name = "nome_produto", nullable = false)
 	private String nome;
 
 	@Column(name = "preco_produto", nullable = false)
 	private Double preco;
-	
+
 	@Column(name = "volume_produto", nullable = false)
 	private String volumeProduto;
 
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
-	
+
 	@ManyToMany
-	@JoinTable(
-			name = "tb_produto_estabelecimento",
-			joinColumns = { @JoinColumn(name = "id_produto") },
-			inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") }
-	)
-	
+	@JoinTable(name = "tb_produto_estabelecimento", joinColumns = {
+			@JoinColumn(name = "id_produto") }, inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") })
+
 	// define o atributo listaEndereco do tipo Set (Conjunto), sendo que
 	// esse conjunto só aceita objetos do tipo Estabelecimento
 	private Set<Estabelecimento> listaEstabelecimento;
@@ -49,7 +47,6 @@ public class Produto {
 	public Produto() {
 		super();
 	}
-	
 
 	public Produto(Long id, String nome, Double preco, String volumeProduto, Categoria categoria) {
 		super();
@@ -61,19 +58,13 @@ public class Produto {
 		this.listaEstabelecimento = new HashSet<Estabelecimento>();
 	}
 
-
-
 	public String getVolumeProduto() {
 		return volumeProduto;
 	}
 
-
-
 	public void setVolumeProduto(String volumeProduto) {
 		this.volumeProduto = volumeProduto;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -107,11 +98,9 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-
 	public Set<Estabelecimento> getListaEstabelecimento() {
 		return listaEstabelecimento;
 	}
-
 
 	public void setListaEstabelecimento(Set<Estabelecimento> listaEstabelecimento) {
 		this.listaEstabelecimento = listaEstabelecimento;

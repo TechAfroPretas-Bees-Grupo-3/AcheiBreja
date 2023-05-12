@@ -36,33 +36,37 @@ import tech.afro.pretas.acheibreja.repository.CategoriaRepository;
 
 public class CategoriaController {
 
-	//Injeção de Dependência (classes que serão instanciadas e em quais lugares serão injetadas quando houver necessidade)
+	// Injeção de Dependência (classes que serão instanciadas e em quais lugares
+	// serão injetadas quando houver necessidade)
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Categoria>> getAll(){
+	public ResponseEntity<List<Categoria>> getAll() {
 		return ResponseEntity.ok(categoriaRepository.findAll());
 	}
-	
+
 	@GetMapping("/{idCategoria}")
-	public ResponseEntity<Categoria> getByIdCategoria(@PathVariable Long idCategoria){
+	public ResponseEntity<Categoria> getByIdCategoria(@PathVariable Long idCategoria) {
 		return categoriaRepository.findById(idCategoria).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-	//@PathVariable Long id, insere o valor enviado no endereço do endpoint, na variável de caminho {id}, no parÂmetro do Método getById(Long id)
+		// @PathVariable Long id, insere o valor enviado no endereço do endpoint, na
+		// variável de caminho {id}, no parÂmetro do Método getById(Long id)
 	}
-		
+
 	@PostMapping
-	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria){
-	return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
-	//@Valid, valida o objeto categoria enviado no corpo da requisição (request body), conforme as regras definidas na model categoria
-	//@RequestBody, recebe o objeto do tipo Categoria (no formato JSON) e insere no parâmetro categoria do método post
-		}
-	
+	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
+		// @Valid, valida o objeto categoria enviado no corpo da requisição (request
+		// body), conforme as regras definidas na model categoria
+		// @RequestBody, recebe o objeto do tipo Categoria (no formato JSON) e insere no
+		// parâmetro categoria do método post
+	}
 
 	@PutMapping
 	public ResponseEntity<Categoria> put(@Valid @RequestBody Categoria categoria) {
-		return categoriaRepository.findById(categoria.getIdCategoria()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(categoriaRepository.save(categoria)))
+		return categoriaRepository.findById(categoria.getIdCategoria())
+				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(categoriaRepository.save(categoria)))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
@@ -70,17 +74,14 @@ public class CategoriaController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
-		
-		if(categoria.isEmpty())
+
+		if (categoria.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		
 		categoriaRepository.deleteById(id);
 	}
-	
+
 	@GetMapping("/tipoCategoria/{tipoCategoria}")
-	public ResponseEntity<List<Categoria>> getByTipoCategoria(@PathVariable String tipoCategoria){
+	public ResponseEntity<List<Categoria>> getByTipoCategoria(@PathVariable String tipoCategoria) {
 		return ResponseEntity.ok(categoriaRepository.findAllByTipoCategoriaContainingIgnoreCase(tipoCategoria));
 	}
-
-	
 }

@@ -1,5 +1,6 @@
 package tech.afro.pretas.acheibreja.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -37,26 +38,28 @@ public class Produto {
 	
 	@ManyToMany
 	@JoinTable(
-			name = "produto_endereco",
+			name = "tb_produto_estabelecimento",
 			joinColumns = { @JoinColumn(name = "id_produto") },
-			inverseJoinColumns = { @JoinColumn(name = "id_endereco") }
+			inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") }
 	)
-	private Set<Estabelecimento> listaEndereco;
+	
+	// define o atributo listaEndereco do tipo Set (Conjunto), sendo que
+	// esse conjunto só aceita objetos do tipo Estabelecimento
+	private Set<Estabelecimento> listaEstabelecimento;
 
 	public Produto() {
 		super();
 	}
 	
 
-	public Produto(Long id, String nome, Double preco, String volumeProduto, Categoria categoria,
-			Set<Estabelecimento> listaEndereco) {
+	public Produto(Long id, String nome, Double preco, String volumeProduto, Categoria categoria) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
 		this.volumeProduto = volumeProduto;
 		this.categoria = categoria;
-		this.listaEndereco = listaEndereco;
+		this.listaEstabelecimento = new HashSet<Estabelecimento>();
 	}
 
 
@@ -105,11 +108,14 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-	public Set<Estabelecimento> getListaEndereco() {
-		return listaEndereco;
+
+	public Set<Estabelecimento> getListaEstabelecimento() {
+		return listaEstabelecimento;
 	}
 
-	public void setListaEndereco(Set<Estabelecimento> listaEndereco) {
-		this.listaEndereco = listaEndereco;
+
+	public void setListaEstabelecimento(Set<Estabelecimento> listaEstabelecimento) {
+		this.listaEstabelecimento = listaEstabelecimento;
 	}
+
 }

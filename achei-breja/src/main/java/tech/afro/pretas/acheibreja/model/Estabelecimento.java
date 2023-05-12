@@ -1,5 +1,6 @@
 package tech.afro.pretas.acheibreja.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -27,21 +28,21 @@ public class Estabelecimento {
 	@Column(nullable = false)
 	private String estabelecimento;
 	
-	@ManyToMany(mappedBy = "listaEndereco")
+	@ManyToMany(mappedBy = "listaEstabelecimento")
 	private Set<Produto> listaProduto;
 
 	public Estabelecimento() {
 		super();
 	}
 	
-	public Estabelecimento(Long idEstabelecimento, String logradouro, String bairro, String estabelecimento,
-			Set<Produto> listaProduto) {
+	//tirei o parametro do listaproduto e instanciei o conjunto hash set listaproduto para depois do objeto instanciado adicionar o elesmentos do conjunto (ovo ou a galinha) 
+	public Estabelecimento(Long idEstabelecimento, String logradouro, String bairro, String estabelecimento) {
 		super();
 		this.idEstabelecimento = idEstabelecimento;
 		this.logradouro = logradouro;
 		this.bairro = bairro;
 		this.estabelecimento = estabelecimento;
-		this.listaProduto = listaProduto;
+		this.listaProduto = new HashSet<Produto>();
 	}
 
 	public Long getIdEndereco() {

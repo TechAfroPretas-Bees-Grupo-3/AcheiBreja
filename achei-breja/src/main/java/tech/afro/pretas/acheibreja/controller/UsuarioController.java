@@ -15,31 +15,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
+import tech.afro.pretas.acheibreja.model.Categoria;
 import tech.afro.pretas.acheibreja.model.Usuario;
 import tech.afro.pretas.acheibreja.repository.UsuarioRepository;
 import tech.afro.pretas.acheibreja.security.JwtService;
 
 @RestController // config a classe pra se controlador e responder por requisicoes
 @RequestMapping("/usuarios") // qual var ser o caminho que o controlador vai responder
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*") //nao parece ser necessário pois as chamadas sao feitos pelo postman e nao outros sites
 public class UsuarioController {
 
-	//pra ter acesso ao dados do user repository deve-se fazer uma composicao
-	//usado injecao de dependencia pra que seja instanciado - instanciar um objeto com o Spring
+	// pra ter acesso ao dados do user repository deve-se fazer uma composicao
+	// usado injecao de dependencia pra que seja instanciado - instanciar um objeto
+	// com o Spring
 	@Autowired
 	private UsuarioRepository repository;
 
 	@Autowired
 	private JwtService usuarioService;
-	
-	//quando faz requisicao web tem utilizar o verbo (get no caso)
+
+	// quando faz requisicao web tem utilizar o verbo (get no caso)
 	@GetMapping("/all")
 	@ApiOperation("metodo que retorna todos os usuarios")
-	public ResponseEntity<List<Usuario>>findAll() {		
+	public ResponseEntity<List<Usuario>> findAll() {
 		try {
 			List<Usuario> result = repository.findAll();
 			return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -47,57 +51,57 @@ public class UsuarioController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
-		return repository.findById(id)
-			.map(resposta -> ResponseEntity.ok(resposta))
-			.orElse(ResponseEntity.notFound().build());
+		return repository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.notFound().build());
 	}
-	
+
 	@PutMapping("/atualizar")
-	public Usuario putUsuario(@Valid @RequestBody Usuario usuario){
+	public Usuario putUsuario(@Valid @RequestBody Usuario usuario) {
 		return repository.save(usuario);
 	}
-	
-	@DeleteMapping("/delete/{id}")
-	public Optional<Usuario> deleteId(@PathVariable Long id) {
-	  return repository.findById(id);
-	  repository.deleteById(id);
-//	public Usuario deleteUsuario(@Valid @RequestBody Usuario usuario){
-//		return repository.delete(usuario);		
-	
-	
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable Long id) {
+		Optional<Usuario> usuario = repository.findById(id);
+		if (usuario.isEmpty())
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		repository.deleteById(id);
 	}
-	
 
 	@PostMapping("/logar")
 	public ResponseEntity<String> logar(@RequestBody Usuario usuario) {
 		Optional<Usuario> optionalUsuario = repository.findByEmail(usuario.getEmail());
 		if (!optionalUsuario.isPresent()) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("HTTP Status will be INTERNAL_SERVER_ERROR (CODE 500)\n ");
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+					.body("HTTP Status will be INTERNAL_SERVER_ERROR (CODE 500)\n ");
 		}
 		Usuario u = optionalUsuario.get();
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if (!encoder.matches(usuario.getSenha(), u.getSenha())) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("HTTP Status will be INTERNAL_SERVER_ERROR (CODE 500)\n ");
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+					.body("HTTP Status will be INTERNAL_SERVER_ERROR (CODE 500)\n ");
 		}
 		String token = usuarioService.generateToken(usuario.getEmail());
 		return ResponseEntity.status(HttpStatus.CREATED).body(token);
 	}
 
-	// deve ter todo os parametros necessarios para instanciar tipo usuario e salvar usando o repository
-	// 
+	// deve ter todo os parametros necessarios para instanciar tipo usuario e salvar
+	// usando o repository
 	@PostMapping("/cadastrar")
-	// está contido o http status
+	// está contido o http status (response entity)
 	public ResponseEntity<String> cadastrar(@RequestBody Usuario usuario) {
 		try {
-
+			// senha hash
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			usuario.setSenha(encoder.encode(usuario.getSenha()));
 			repository.save(usuario);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("HTTP Status will be INTERNAL_SERVER_ERROR (CODE 500)\n " + e);
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("HTTP Status will be INTERNAL_SERVER_ERROR (CODE 500)\n " + e);
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body("HTTP Status will be CREATED (CODE 201)\n");
 	}

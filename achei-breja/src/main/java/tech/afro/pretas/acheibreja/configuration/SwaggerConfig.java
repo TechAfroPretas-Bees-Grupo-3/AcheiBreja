@@ -14,8 +14,9 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 
 @Configuration
 public class SwaggerConfig {
-
+	
 	@Bean
+	//API do swagger
     OpenAPI springAcheiBrejaOpenAPI() {
         return new OpenAPI()
             .info(new Info()
@@ -33,7 +34,6 @@ public class SwaggerConfig {
                 .url("https://github.com/TechAfroPretas-Bees-Grupo-3/AcheiBreja/"));
     }
 
-
 	@Bean
 	OpenApiCustomizer customerGlobalHeaderOpenApiCustomiser() {
 
@@ -42,22 +42,19 @@ public class SwaggerConfig {
 
 				ApiResponses apiResponses = operation.getResponses();
 
-				apiResponses.addApiResponse("200", createApiResponse("Sucesso!"));
-				apiResponses.addApiResponse("201", createApiResponse("Objeto Persistido!"));
-				apiResponses.addApiResponse("204", createApiResponse("Objeto Excluído!"));
-				apiResponses.addApiResponse("400", createApiResponse("Erro na Requisição!"));
-				apiResponses.addApiResponse("401", createApiResponse("Acesso Não Autorizado!"));
-				apiResponses.addApiResponse("403", createApiResponse("Acesso Proibido!"));
-				apiResponses.addApiResponse("404", createApiResponse("Objeto Não Encontrado!"));
-				apiResponses.addApiResponse("500", createApiResponse("Erro na Aplicação!"));
-
+				apiResponses.addApiResponse("200", createApiResponse("Sucesso"));
+				apiResponses.addApiResponse("201", createApiResponse("Objeto persistido"));
+				apiResponses.addApiResponse("204", createApiResponse("Objeto excluído"));
+				apiResponses.addApiResponse("400", createApiResponse("Erro na requisição"));
+				apiResponses.addApiResponse("401", createApiResponse("Acesso não autorizado"));
+				apiResponses.addApiResponse("403", createApiResponse("Acesso proibido"));
+				apiResponses.addApiResponse("404", createApiResponse("Objeto não encontrado"));
+				apiResponses.addApiResponse("500", createApiResponse("Erro na aplicação"));
 			}));
 		};
 	}
 
 	private ApiResponse createApiResponse(String message) {
-
 		return new ApiResponse().description(message);
-
 	}
 }

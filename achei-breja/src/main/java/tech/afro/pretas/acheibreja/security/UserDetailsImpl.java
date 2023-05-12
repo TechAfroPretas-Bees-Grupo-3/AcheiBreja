@@ -17,11 +17,12 @@ public class UserDetailsImpl implements UserDetails {
 	private List<GrantedAuthority> authorities;
 
 	public UserDetailsImpl(Usuario user) {
-		this.username = user.getEmail() ;
+		this.username = user.getEmail();
 		this.password = user.getSenha();
 	}
 
-	public UserDetailsImpl() {	}
+	public UserDetailsImpl() {
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -33,11 +34,6 @@ public class UserDetailsImpl implements UserDetails {
 		return password;
 	}
 
-	/**
-	 * O username e o email do usuario.
-	 * 
-	 * @return the userName
-	 */
 	@Override
 	public String getUsername() {
 		return username;

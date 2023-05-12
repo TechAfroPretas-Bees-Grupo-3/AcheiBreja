@@ -35,7 +35,7 @@ public class Estabelecimento {
 		super();
 	}
 	
-	//tirei o parametro do listaproduto e instanciei o conjunto hash set listaproduto para depois do objeto instanciado adicionar o elesmentos do conjunto (ovo ou a galinha) 
+	//tirei o parametro do listaproduto e instanciei o conjunto hash set listaproduto para depois do objeto instanciado adicionar o elementos do conjunto (ovo ou a galinha) 
 	public Estabelecimento(Long idEstabelecimento, String logradouro, String bairro, String estabelecimento) {
 		super();
 		this.idEstabelecimento = idEstabelecimento;

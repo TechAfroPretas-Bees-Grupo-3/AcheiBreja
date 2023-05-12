@@ -1,5 +1,4 @@
 package tech.afro.pretas.acheibreja.model;
-
 import java.util.HashSet;
 import java.util.Set;
 

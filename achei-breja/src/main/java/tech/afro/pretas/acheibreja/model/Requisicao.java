@@ -2,6 +2,9 @@ package tech.afro.pretas.acheibreja.model;
 
 import java.util.Calendar;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,15 +26,25 @@ public class Requisicao {
 	@Column(name = "id_requisicao")
 	private Long idRequisicao;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_usuario", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
 	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private Usuario usuario;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_produto", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_produto",referencedColumnName = "id_produto", nullable = false)
 	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private Produto produto;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_estabelecimento",nullable = false)
+	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private Estabelecimento estabelecimento;
+	
+	
 	
 	@Column(name = "id_quantidade_requisicao")
 	private Long idQuantidadeRequisicao;
@@ -44,13 +57,14 @@ public class Requisicao {
 	}
 	
 	public Requisicao(Long idRequisicao, Usuario usuario, Produto produto, Long idQuantidadeRequisicao,
-			Calendar dataRequisicao) {
+			Calendar dataRequisicao, Estabelecimento estabelecimento) {
 		super();
 		this.idRequisicao = idRequisicao;
 		this.usuario = usuario;
 		this.produto = produto;
 		this.idQuantidadeRequisicao = idQuantidadeRequisicao;
 		this.dataRequisicao = dataRequisicao;
+		this.estabelecimento = estabelecimento;
 	}
 
 	public Long getIdRequisicao() {
@@ -96,5 +110,13 @@ public class Requisicao {
 	public Long getId() {
 		// TODO Auto-generated method stub
 		return idRequisicao;
+	}
+	
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
+	}
+
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
 	}
 }

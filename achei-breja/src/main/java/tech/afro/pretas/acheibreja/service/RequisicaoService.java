@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tech.afro.pretas.acheibreja.model.Requisicao;
+import tech.afro.pretas.acheibreja.model.RequisicaoSemReferencia;
 import tech.afro.pretas.acheibreja.repository.RequisicaoRepository;
 @Service
 public class RequisicaoService {
@@ -18,13 +19,18 @@ public class RequisicaoService {
 	  @Autowired
 	    private RequisicaoRepository requisicaoRepository;
 	    
-	    public List<Requisicao> listar() {
+	    public List<Requisicao> listar(Long idRequisicao) {
 	        return requisicaoRepository.findAll();
 	    }
 	    
 	    public Optional<Requisicao> obterPorId(Long id) {
 	        return requisicaoRepository.findById(id);
 	              
+	    }
+	    
+	    
+	    public List<Requisicao> listarRequisicoes() {
+	        return requisicaoRepository.findAll();
 	    }
 	    
 	    public Requisicao salvar(Requisicao requisicao) {
@@ -40,6 +46,18 @@ public class RequisicaoService {
 	    
 	    public void excluir(Long id) {
 	        requisicaoRepository.deleteById(id);
+	    }
+	    
+	    
+	    public Requisicao salvarRequisicao(RequisicaoSemReferencia requisicaoSemReferencia) {
+	        Requisicao requisicao = new Requisicao();
+	        requisicao.setIdRequisicao(requisicaoSemReferencia.getIdRequisicao());
+	        requisicao.setUsuario(requisicaoSemReferencia.getUsuario());
+	        requisicao.setProduto(requisicaoSemReferencia.getProduto());
+	        requisicao.setEstabelecimento(requisicaoSemReferencia.getEstabelecimento());
+	        requisicao.setIdQuantidadeRequisicao(requisicaoSemReferencia.getIdQuantidadeRequisicao());
+	        requisicao.setDataRequisicao(requisicaoSemReferencia.getDataRequisicao());
+	        return requisicaoRepository.save(requisicao);
 	    }
 	    
 

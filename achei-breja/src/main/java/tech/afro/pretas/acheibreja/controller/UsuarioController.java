@@ -37,6 +37,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository repository;
 
+
 	@Autowired
 	private JwtService usuarioService;
 
@@ -50,6 +51,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
+
 	}
 
 	@GetMapping("/{id}")

@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,8 +32,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         //header authorization postman
-    	String authHeader = request.getHeader("Authorization");
+    	  String authHeader = request.getHeader("Authorization");
         String token = null;
         String username = null;
     
@@ -53,10 +55,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             
             }
             filterChain.doFilter(request, response);
+
         
         }
         catch(ExpiredJwtException | UnsupportedJwtException | MalformedJwtException 
                 | ResponseStatusException e){
+
             response.setStatus(HttpStatus.FORBIDDEN.value());
             return;
         }

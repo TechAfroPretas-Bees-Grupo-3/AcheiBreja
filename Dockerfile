@@ -50,15 +50,15 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
-#RUN echo "executando a aplicacao usando comando Java"
-#ENTRYPOINT ["java","-cp","app:app/lib/*","tech.afro.pretas.acheibreja.AcheiBrejaApplication"]
+RUN echo "executando a aplicacao usando comando Java"
+ENTRYPOINT ["java","-cp","app:app/lib/*","tech.afro.pretas.acheibreja.AcheiBrejaApplication"]
 
 #RUN echo "executando a aplicacao usando mvn spring-boot"
 #ENTRYPOINT ["mvn","spring-boot:run"," --debug"]
 
-COPY achei-breja/.mvn/wrapper/maven-wrapper.jar .
+#COPY achei-breja/.mvn/wrapper/maven-wrapper.jar .
 
-RUN echo "executando a aplicacao usando mvn Java -jar"
-CMD ["java","-jar","maven-wrapper.jar"]
+#RUN echo "executando a aplicacao usando mvn Java -jar"
+#CMD ["java","-jar","maven-wrapper.jar"]
 
 RUN echo "sucesso"

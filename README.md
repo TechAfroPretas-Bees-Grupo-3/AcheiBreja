@@ -25,10 +25,11 @@
 	- [Tabela de estabelecimentos](#tabela-de-estabelecimentos)
 	- [Tabela de requisições](#tabela-de-requisições)
 	- [Tabela produto estabelecimento](#tabela-produto-estabelecimento)
+- [Documentação do Swagger](documentação-do-swagger)
 - [Rotas](#rotas)
 	- [Rotas de usuários](#rotas-de-usuários) 
 	- [Rotas de categorias](#rotas-de-categorias)
-	- [Rotas de produto](#rotas-de-produto)
+	- [Rotas de produtos](#rotas-de-produtos)
 	- [Rotas de estabelecimentos](#rotas-de-estabelecimentos)
 	- [Rotas de requisição](#rotas-de-requisição)
 - [Autoras](#autoras)
@@ -129,6 +130,10 @@ Pode-se observar ainda que nas tabelas de produtos, requisiões e produto/estabe
 | 1		 | 4                       |
 | 2		 | 4                       |
 | 3		 | 4                       |
+
+## Documentação do Swagger
+
+A [documentação do swagger](https://github.com/TechAfroPretas-Bees-Grupo-3/AcheiBreja/blob/main/Swagger%20Projeto%20Achei%20Breja.pdf) mostra todos os CRUDs das entidades existentes neste projeto.
 
 ## Rotas
 

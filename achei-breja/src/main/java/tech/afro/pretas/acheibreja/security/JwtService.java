@@ -20,6 +20,7 @@ public class JwtService {
 
 	public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
 
+
 	// getsignkey utilizado pela geracao do token e pela validacao do token, com
 	// esse segredo é gatindo que nenhum token gerada por outra aaplicacao vai ser
 	// aceita nessa aplicaça
@@ -29,7 +30,9 @@ public class JwtService {
 	}
 
 	private Claims extractAllClaims(String token) {
+
 		return Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token).getBody();
+
 	}
 
 	public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -58,6 +61,7 @@ public class JwtService {
 		return Jwts.builder().setClaims(claims).setSubject(userName).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
 				.signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
+
 	}
 
 	public String generateToken(String userName) {

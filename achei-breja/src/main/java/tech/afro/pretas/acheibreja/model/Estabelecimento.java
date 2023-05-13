@@ -3,6 +3,8 @@ package tech.afro.pretas.acheibreja.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +30,10 @@ public class Estabelecimento {
 	@Column(nullable = false)
 	private String estabelecimento;
 	
+	
 	@ManyToMany(mappedBy = "listaEstabelecimento")
+	@JsonIgnore
+
 	private Set<Produto> listaProduto;
 
 	public Estabelecimento() {

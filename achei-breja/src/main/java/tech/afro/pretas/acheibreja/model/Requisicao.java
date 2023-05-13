@@ -1,13 +1,20 @@
 package tech.afro.pretas.acheibreja.model;
 
 import java.util.Calendar;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity // diz ao JPA que essa e uma classe que deve ser persistida no banco de dados
@@ -18,14 +25,29 @@ public class Requisicao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_requisicao")
 	private Long idRequisicao;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
+	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 
-	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	private Usuario usuario;
 
-	@ManyToOne
-	@JoinColumn(name = "id_produto")
+	//@ManyToOne
+	//@JoinColumn(name = "id_usuario")
+	//private Usuario usuario;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_produto",referencedColumnName = "id_produto", nullable = false)
+	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private Produto produto;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_estabelecimento",nullable = false)
+	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private Estabelecimento estabelecimento;
+	
 
 	@Column(name = "id_quantidade_requisicao")
 	private Long idQuantidadeRequisicao;
@@ -38,13 +60,14 @@ public class Requisicao {
 	}
 
 	public Requisicao(Long idRequisicao, Usuario usuario, Produto produto, Long idQuantidadeRequisicao,
-			Calendar dataRequisicao) {
+			Calendar dataRequisicao, Estabelecimento estabelecimento) {
 		super();
 		this.idRequisicao = idRequisicao;
 		this.usuario = usuario;
 		this.produto = produto;
 		this.idQuantidadeRequisicao = idQuantidadeRequisicao;
 		this.dataRequisicao = dataRequisicao;
+		this.estabelecimento = estabelecimento;
 	}
 
 	public Long getIdRequisicao() {
@@ -85,5 +108,18 @@ public class Requisicao {
 
 	public void setDataRequisicao(Calendar dataRequisicao) {
 		this.dataRequisicao = dataRequisicao;
+	}
+
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return idRequisicao;
+	}
+	
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
+	}
+
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
 	}
 }

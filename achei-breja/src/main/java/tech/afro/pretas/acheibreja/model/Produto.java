@@ -3,6 +3,8 @@ package tech.afro.pretas.acheibreja.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +38,7 @@ public class Produto {
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "tb_produto_estabelecimento", joinColumns = {
 			@JoinColumn(name = "id_produto") }, inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") })
@@ -47,6 +50,7 @@ public class Produto {
 	public Produto() {
 		super();
 	}
+
 
 	public Produto(Long id, String nome, Double preco, String volumeProduto, Categoria categoria) {
 		super();

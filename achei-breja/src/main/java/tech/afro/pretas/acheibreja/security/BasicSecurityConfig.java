@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+
 //define o modelo de configuração da aplicacão
 public class BasicSecurityConfig {
 

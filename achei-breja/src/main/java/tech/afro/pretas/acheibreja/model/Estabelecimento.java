@@ -3,7 +3,11 @@ package tech.afro.pretas.acheibreja.model;
 import java.util.HashSet;
 import java.util.Set;
 
+
 import jakarta.persistence.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,7 +34,14 @@ public class Estabelecimento {
 	@Column(nullable = false)
 	private String estabelecimento;
 	
+
 	@ManyToMany(mappedBy = "listaEstabelecimento", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) //EAGER força o jpa/hibernate buscar os produtos do estabelecimento assim que consulta o estabelecimento
+
+	
+	//@ManyToMany(mappedBy = "listaEstabelecimento")
+	//@JsonIgnore
+
+
 	private Set<Produto> listaProduto;
 
 	public Estabelecimento() {

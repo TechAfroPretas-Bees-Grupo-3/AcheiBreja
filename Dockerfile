@@ -4,11 +4,11 @@ RUN echo "definindo pasta de trabalho"
 WORKDIR /workspace/app
 
 RUN echo "copiando arquivo mvnw necessario para o build"
-COPY mvnw .
+COPY achei-breja/mvnw .
 RUN echo "copiando arquivo .mvn necessario para o build"
-COPY .mvn .mvn
+COPY achei-breja/.mvn .mvn
 RUN echo "copiando arquivo pom.xml necessario para o build"
-COPY pom.xml .
+COPY achei-breja/pom.xml .
 RUN echo "copiando diretorio src necessario para o build"
 COPY achei-breja/src src
 

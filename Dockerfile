@@ -51,6 +51,7 @@ COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
 RUN echo "executando a aplicacao"
-ENTRYPOINT ["java","-cp","app:app/lib/*","tech.afro.pretas.acheibreja.AcheiBrejaApplication"]
+#ENTRYPOINT ["java","-cp","app:app/lib/*","tech.afro.pretas.acheibreja.AcheiBrejaApplication"]
+ENTRYPOINT ["mvn","spring-boot:run"," --debug"]
 
 RUN echo "sucesso"

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,10 +39,21 @@ public class Produto {
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 
+	
+	@ManyToMany(fetch = FetchType.EAGER) //EAGER força o jpa/hibernate buscar os dados do relacionamento
+	@JoinTable(
+			name = "tb_produto_estabelecimento",
+			joinColumns = { @JoinColumn(name = "id_produto") },
+			inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") }
+	)
 	@JsonIgnore
-	@ManyToMany
-	@JoinTable(name = "tb_produto_estabelecimento", joinColumns = {
-			@JoinColumn(name = "id_produto") }, inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") })
+
+
+	//@JsonIgnore
+	//@ManyToMany
+	//@JoinTable(name = "tb_produto_estabelecimento", joinColumns = {
+	//		@JoinColumn(name = "id_produto") }, inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") })
+
 
 	// define o atributo listaEndereco do tipo Set (Conjunto), sendo que
 	// esse conjunto só aceita objetos do tipo Estabelecimento

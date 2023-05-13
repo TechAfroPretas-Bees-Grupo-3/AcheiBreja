@@ -151,6 +151,7 @@ Nesta API Rest FULL foi utilizado os métodos HTTP para realizar as rotas da apl
 | DELETE      | `/delete/{id}`         | Deleta usuário por id          |
 
 
+
 ### Rotas de categorias:
 
 | Método HTTP | Endpoint                                   | Descrição                     | 
@@ -161,6 +162,7 @@ Nesta API Rest FULL foi utilizado os métodos HTTP para realizar as rotas da apl
 | POST        | `/categoria`                               | Cria categoria                |
 | PUT         | `/categoria/atualizar/{id}`                | Atualiza categoria por id     |
 | DELETE      | `/categoria/{id}`.                         | Deleta categoria por id       |
+
 
 
 ### Rotas de produtos:

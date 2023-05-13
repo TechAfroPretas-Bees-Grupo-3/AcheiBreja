@@ -66,7 +66,7 @@ public class EstabelecimentoController {
 	public List<Estabelecimento> getByIdProduto(@PathVariable Long idProduto) {
 		System.out.println("[ESTABELECIMENTO] BUSCANDO POR ID PRODUTO...");
 
-		Optional<Produto> produtoBuscado = produtoRepository.findById(idProduto.toString());
+		Optional<Produto> produtoBuscado = produtoRepository.findById(idProduto);
 
 		if (produtoBuscado.isEmpty()) {
 			return List.of();

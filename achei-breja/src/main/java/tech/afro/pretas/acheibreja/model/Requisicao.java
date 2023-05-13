@@ -2,7 +2,6 @@ package tech.afro.pretas.acheibreja.model;
 
 import java.util.Calendar;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -26,19 +25,13 @@ public class Requisicao {
 	@Column(name = "id_requisicao")
 	private Long idRequisicao;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
-	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
-
-
-	//@ManyToOne
-	//@JoinColumn(name = "id_usuario")
-	//private Usuario usuario;
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_produto",referencedColumnName = "id_produto", nullable = false)
-	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
+	//@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private Produto produto;
 	

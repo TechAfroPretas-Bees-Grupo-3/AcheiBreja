@@ -92,8 +92,8 @@ public class RequisicaoController {
 	        Logger logger = LoggerFactory.getLogger(getClass());
 	        logger.info("Recebendo requisição: {}", requisicao);
 	        Usuario usuario = usuarioRepository.findById(requisicao.getUsuario().getId()).orElseThrow();
-	        Produto produto = produtoRepository.findById(requisicao.getProduto().getId().toString()).orElseThrow();
-	        Estabelecimento estabelecimento = estabelecimentoRepository.findById(requisicao.getEstabelecimento().getIdEndereco()).orElseThrow();
+	        Produto produto = produtoRepository.findById(requisicao.getProduto().getId()).orElseThrow();
+	        Estabelecimento estabelecimento = estabelecimentoRepository.findById(requisicao.getEstabelecimento().getIdEstabelecimento()).orElseThrow();
 	        Requisicao request = new Requisicao();
 	        request.setIdRequisicao(requisicao.getId());
 	        request.setUsuario(usuario);

@@ -1,5 +1,11 @@
 FROM openjdk:17.0.1-jdk-oracle as build
 
+RUN echo "POSTGRESDATABASE=${POSTGRESDATABASE}"
+RUN echo "POSTGRESHOST=${POSTGRESHOST}"
+RUN echo "POSTGRESPASSWORD=${POSTGRESPASSWORD}"
+RUN echo "POSTGRESPORT=${POSTGRESPORT}"
+RUN echo "POSTGRESUSER=${POSTGRESUSER}"
+
 RUN echo "definindo pasta de trabalho"
 WORKDIR /workspace/app
 

@@ -201,7 +201,7 @@ Nesta API Rest FULL foi utilizado os métodos HTTP para realizar as rotas da apl
 ## Autoras
 - [Aisla Alcântara](https://www.linkedin.com/in/aislaalcantara/) 
 - [Carolaine Marquezini](https://www.linkedin.com/in/carolainemarquezini/)
-- [Daiane Gonçalves]()
+- [Daiane Gonçalves](https://www.linkedin.com/in/daigoncalves/)
 - [Marília Fileto](https://www.linkedin.com/in/marilia-fileto/) 
 - [Viviane Neres](https://www.linkedin.com/in/viviane-santos-neres/)
 

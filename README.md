@@ -31,7 +31,6 @@
 	- [Rotas de produto](#rotas-de-produto)
 	- [Rotas de estabelecimentos](#rotas-de-estabelecimentos)
 	- [Rotas de requisição](#rotas-de-requisição)
-- [Implementações Futuras](#implementações-futuras)
 - [Autoras](#autoras)
 - [Referência](#referência)
 
@@ -54,7 +53,8 @@
    Para incentivar o uso do aplicativo, os fabricantes de cerveja e os locais de venda poderiam oferecer promoções exclusivas para os usuários ou reversão do valor dessa promoção para entidades sem fins lucrativos.
    
 ## Tecnologias utilizadas
-- [X] IDE Utilizada: Spring Tool Suite / Eclipse;
+- [X] IDE Utilizada: Spring Tool Suite/ Spring Security / Eclipse;
+- [X] Versionamento de códigos: Git, GitHub, Sourcetree; 
 - [X] Banco de dados utilizado: Oracle;
 - [X] Interface do banco de dados: SQL Developer;
 - [X] Arquitetura MVC.
@@ -67,13 +67,13 @@ Pode-se observar ainda que nas tabelas de produtos, requisiões e produto/estabe
 
 ### Tabela de usuários
 
-| idUsuario (PK) | nomeCompleto             | e-mail                  | senha | 
-| -------------- | -------------------------| ------------------------|-------|
-|      1         | Aisla Alcântara          | aisla@gmail.com	      | 123   |                                 
-|      2         | Carolaine Marquezini     | carol@gmail.com         | 1234  |
-|      3         | Daiane Goncalves         | daiane@gmail.com	      | 123   |                                 
-|      4         | Marília Fileto           | marilia@gmail.com	      | 123   |                                 
-|      5         | Viviane NeresAisla       | viviane@gmail.com	      | 123   |                                 
+| idUsuario (PK) | nomeCompleto             | e-mail                  | senha   | 
+| -------------- | -------------------------| ------------------------|---------|
+|      1         | Aisla Alcântara          | aisla@gmail.com	      | abc123  |                                 
+|      2         | Carolaine Marquezini     | carol@gmail.com         | abc123  |
+|      3         | Daiane Goncalves         | daiane@gmail.com	      | abc123  |                                 
+|      4         | Marília Fileto           | marilia@gmail.com	      | abc123  |                                 
+|      5         | Viviane Neres            | vivi@gmail.com	      | abc123  |                                 
 
 
 ### Tabela de categorias
@@ -136,11 +136,15 @@ Nesta API Rest FULL foi utilizado os métodos HTTP para realizar as rotas da apl
 
 ### Rotas de usuários:
 
-| Método HTTP | Endpoint             | Descrição                                                   | 
-| ----------- | ---------------------| ------------------------------------------------------------|
-| GET         | `/usuarios/all`      | Retorna todos os cadastrados                                |
-| POST        | `/usuarios/cadastrar`| Logar um usuário                                            | 
-| POST        | `/usuarios/logar `   | Logar um usuário                                            | 
+| Método HTTP | Endpoint               | Descrição                      | 
+| ----------- | -----------------------| -------------------------------|
+| GET         | `/usuarios/all`        | Retorna todos os usuários      |
+| GET         | `/usuarios/{ID}`       | Retorna usuário por id         |
+| PUT         | `/atualizar/{id}`      | Atualiza usuário por id        |
+| POST        | `/usuarios/cadastrar`  | Cria um usuário                | 
+| POST        | `/usuarios/logar `     | Logar usuário                  | 
+| DELETE      | `/delete/{id}`         | Deleta usuário por id          |
+
 
 ### Rotas de categorias:
 
@@ -151,8 +155,19 @@ Nesta API Rest FULL foi utilizado os métodos HTTP para realizar as rotas da apl
 | GET         | `/categoria/tipoCategoria/{tipoCategoria}` | Retorna por tipo de categoria |
 | POST        | `/categoria`                               | Cria categoria                |
 | PUT         | `/categoria/atualizar/{id}`                | Atualiza categoria por id     |
-| DELETE      | `/categoria/{id}`.                         | Retorna todos os cadastrados  |
+| DELETE      | `/categoria/{id}`.                         | Deleta categoria por id       |
 
+
+### Rotas de produtos:
+
+| Método HTTP | Endpoint                   | Descrição                     | 
+| ----------- | ---------------------------| ------------------------------|
+| GET         | `/produto`                 | Retorna todos os produto      |
+| GET         | `/produto/{id}`            | Retorna produto por id        |
+| GET         | `/produto/nome/{nome}`     | Retorna por nome de produto   |
+| POST        | `/produto`                 | Cria produto                  |
+| PUT         | `/produto/atualizar/{id}`  | Atualiza produto por id       |
+| DELETE      | `/produto/{id}`            | Deleta produto por id         |
 
 
 ### Rotas de estabelecimentos:
@@ -160,11 +175,22 @@ Nesta API Rest FULL foi utilizado os métodos HTTP para realizar as rotas da apl
 | Método HTTP | Endpoint                                     | Descrição                                  | 
 | ----------- | ---------------------------------------------| -------------------------------------------|
 | GET         | `/estabelecimentos/buscar/all`               | Retorna todos os estabelecimentos          |
-| GET         | `/estabelecimentos/buscar/{id}`              | Retorna estabelecimentos por id            |
+| GET         | `/estabelecimentos/buscar/{id}`              | Retorna estabelecimento por id             |
 | GET         | `/estabelecimento/buscar/produto/{idProduto}`| Retorna estabelecimentos por id do produto |
-| POST        | `/estabelecimentos/criar`                    | Retorna todos os cadastrados               |
+| POST        | `/estabelecimentos/criar`                    | Cria estabelecimentos                      |
 | PUT         | `/estabelecimentos/atualizar/{id}`           | Atualiza estabelecimento por id            |
-| DELETE      | `/estabelecimentos/deletar/{id}`             | Retorna todos os cadastrados               |
+| DELETE      | `/estabelecimentos/deletar/{id}`             | Deleta estabelecimento por id              |
+
+
+### Rotas de requisição:
+
+| Método HTTP | Endpoint                         | Descrição                        | 
+| ----------- | ---------------------------------| ---------------------------------|
+| GET         | `/requisicao/requisicao`         | Retorna todas as requisições     |
+| GET         | `/requisicao/requisicao/{id}`    | Retorna requisições por id       |
+| POST        | `/requisicao/criarRequisicao`    | Cria requisição                  |
+| POST        | `/requisicao/salvarRequisicao`   | Atualiza requisição              |
+| DELETE      | `/requisicao/{id}`               | Deleta requisição por id         |
 
 
 ## Autoras

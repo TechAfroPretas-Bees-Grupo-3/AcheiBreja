@@ -194,11 +194,11 @@ Nesta API Rest FULL foi utilizado os métodos HTTP para realizar as rotas da apl
 
 
 ## Autoras
-- Aisla Alcântara 
-- Carolaine Marquezini
-- Daiane Gonçalves
-- Marília Fileto 
-- Viviane Neres
+- [Aisla Alcântara](https://www.linkedin.com/in/aislaalcantara/) 
+- [Carolaine Marquezini](https://www.linkedin.com/in/carolainemarquezini/)
+- [Daiane Gonçalves]()
+- [Marília Fileto](https://www.linkedin.com/in/marilia-fileto/) 
+- [Viviane Neres](https://www.linkedin.com/in/viviane-santos-neres/)
 
 ## Referência
 https://github.com/rafaelq80/cookbook_spring_v3/blob/main/03_spring/README.md

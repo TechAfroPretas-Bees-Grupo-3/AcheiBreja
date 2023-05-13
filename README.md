@@ -19,11 +19,11 @@
 - [Software](#software)
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
 - [Rotas](#rotas)
- - [Rotas de usuários](#Rotas-de-usuários) 
- - [Rotas de categorias](#rotas-de-categorias)
- - [Rotas de produto](#rotas-de-produto)
- - [Rotas de estabelecimentos](#rotas-de-estabelecimentos)
- - [Rotas de requisição](#rotas-de-requisição)
+	- [Rotas de usuários](#rotas-de-usuários) 
+	- [Rotas de categorias](#rotas-de-categorias)
+	- [Rotas de produto](#rotas-de-produto)
+	- [Rotas de estabelecimentos](#rotas-de-estabelecimentos)
+	- [Rotas de requisição](#rotas-de-requisição)
 - [Implementações Futuras](#implementações-futuras)
 - [Autoras](#autoras)
 - [Referência](#referência)
@@ -54,7 +54,7 @@
 
 ## Rotas
 
-**Rotas de usuários:**
+### Rotas de usuários:
 
 | Método HTTP | Endpoint             | Descrição                                                   | 
 | ----------- | ---------------------| ------------------------------------------------------------|
@@ -62,7 +62,7 @@
 | POST        | `/usuarios/cadastrar`| Logar um usuário                                            | 
 | POST        | `/usuarios/logar `   | Logar um usuário                                            | 
 
-**Rotas de categorias:**
+### Rotas de categorias:
 
 | Método HTTP | Endpoint                                   | Descrição                     | 
 | ----------- | -------------------------------------------| ------------------------------|
@@ -75,7 +75,7 @@
 
 
 
-**Rotas de estabelecimentos:**
+### Rotas de estabelecimentos:
 
 | Método HTTP | Endpoint                                     | Descrição                                  | 
 | ----------- | ---------------------------------------------| -------------------------------------------|

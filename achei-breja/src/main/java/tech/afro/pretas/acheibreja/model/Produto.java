@@ -110,4 +110,9 @@ public class Produto {
 		this.listaEstabelecimento = listaEstabelecimento;
 	}
 
+
+	public Produto findAllByTituloContainingIgnoreCase(String produto) {
+		return null;
+	}
+
 }

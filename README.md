@@ -78,7 +78,7 @@ Pode-se observar ainda que nas tabelas de produtos, requisiões e produto/estabe
 
 ### Tabela de categorias
 
-| iidCategoria (PK) |	tipoCategoria       |  
+| idCategoria (PK) |	tipoCategoria       |  
 | ----------------- | ----------------------| 
 |      1            | pilsen                |   
 |      2            | lager                 | 

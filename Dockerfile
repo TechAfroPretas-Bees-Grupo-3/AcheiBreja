@@ -57,6 +57,7 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 #ENTRYPOINT ["mvn","spring-boot:run"," --debug"]
 
 #RUN echo "executando a aplicacao usando mvn Java -jar"
+COPY .mvn\wrapper\maven-wrapper.jar .
 ENTRYPOINT ["java","-jar","maven-wrapper.jar"]
 
 RUN echo "sucesso"

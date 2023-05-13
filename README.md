@@ -24,7 +24,7 @@
 	- [Tabela de produtos](#tabela-de-produtos)
 	- [Tabela de estabelecimentos](#tabela-de-estabelecimentos)
 	- [Tabela de requisições](#tabela-de-requisições)
-	- [Tabela produto bar](#tabela-produto-bar)
+	- [Tabela produto estabelecimento](#tabela-produto-estabelecimento)
 - [Rotas](#rotas)
 	- [Rotas de usuários](#rotas-de-usuários) 
 	- [Rotas de categorias](#rotas-de-categorias)
@@ -60,6 +60,10 @@
 - [X] Arquitetura MVC.
 
 ## Tabelas do banco de dados
+
+Para as tabelas desenvolvidas neste projeto foi preciso usar um identificador único, que no banco de dados é chamado de **chaves primárias (PK)**. É importante ressaltar que as chaves primárias não podem receber valores repeditos e tão pouco nulos.
+
+Pode-se observar ainda que nas tabelas de produtos, requisiões e produto/estabelecimento utiliza-se as chaves primárias de outras tabelas e elas são denominadas **chaves estrengeiras (FK)** e tem como objetivo identificar a relação entre elas.
 
 ### Tabela de usuários
 
@@ -111,7 +115,7 @@
 |4	           | 4	            | 2	             | 4	              | 1	             | 01/01/2023     |
 
 
-## Tabela produto bar
+## Tabela produto estabelecimento
 
 |IdProduto PK FK | idEstabelecimento PK FK |
 |----------------|-------------------------|
@@ -127,6 +131,8 @@
 | 3		 | 4                       |
 
 ## Rotas
+
+Nesta API Rest FULL foi utilizado os métodos HTTP para realizar as rotas da aplicação por meio do CRUD (Create, Read, Update, Delete).
 
 ### Rotas de usuários:
 

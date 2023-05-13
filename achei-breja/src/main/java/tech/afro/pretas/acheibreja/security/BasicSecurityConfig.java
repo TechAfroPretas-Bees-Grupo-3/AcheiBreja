@@ -3,7 +3,6 @@ package tech.afro.pretas.acheibreja.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+
 //define o modelo de configuração da aplicacão
 public class BasicSecurityConfig {
 
@@ -55,7 +55,9 @@ public class BasicSecurityConfig {
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable().cors();
 
-		http.authorizeHttpRequests((auth) -> auth.requestMatchers("/usuarios/logar").permitAll()
+		http.authorizeHttpRequests((auth) -> auth
+				.requestMatchers("/usuarios/**").permitAll()
+				.requestMatchers("/cadastro/**").permitAll()
 				.requestMatchers("/*/swagger-ui.html").permitAll()
 				// .requestMatchers("/error/**").permitAll()
 				// .requestMatchers(HttpMethod.OPTIONS).permitAll()

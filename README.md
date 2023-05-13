@@ -18,6 +18,13 @@
 - [A solução](#a-solução)
 - [Software](#software)
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Tabelas do banco de dados](#tabelas-do-banco-de-dados)
+	- [Tabela de usuários](#tabela-de-usuários) 
+	- [Tabela de categorias](#tabela-de-categorias)
+	- [Tabela de produtos](#tabela-de-produtos)
+	- [Tabela de estabelecimentos](#tabela-de-estabelecimentos)
+	- [Tabela de requisições](#tabela-de-requisições)
+	- [Tabela produto bar](#tabela-produto-bar)
 - [Rotas](#rotas)
 	- [Rotas de usuários](#rotas-de-usuários) 
 	- [Rotas de categorias](#rotas-de-categorias)
@@ -51,6 +58,73 @@
 - [X] Banco de dados utilizado: Oracle;
 - [X] Interface do banco de dados: SQL Developer;
 - [X] Arquitetura MVC.
+
+## Tabelas do banco de dados
+
+### Tabela de usuários
+
+| idUsuario (PK) | nomeCompleto             | e-mail                  | senha | 
+| -------------- | -------------------------| ------------------------|-------|
+|      1         | Aisla Alcântara          | aisla@gmail.com	      | 123   |                                 
+|      2         | Carolaine Marquezini     | carol@gmail.com         | 1234  |
+|      3         | Daiane Goncalves         | daiane@gmail.com	      | 123   |                                 
+|      4         | Marília Fileto           | marilia@gmail.com	      | 123   |                                 
+|      5         | Viviane NeresAisla       | viviane@gmail.com	      | 123   |                                 
+
+
+### Tabela de categorias
+
+| iidCategoria (PK) |	tipoCategoria       |  
+| ----------------- | ----------------------| 
+|      1            | pilsen                |   
+|      2            | lager                 | 
+|      3            | ipa                   |                                  
+
+
+### Tabela de produtos
+
+|idProduto (PK)| idCategoria (FK)     |	nomeProduto	   | precoProduto | volume  |
+|--------------|----------------------|--------------------|--------------|---------|
+|1	       | 1             	      | Patagonia Bohemian |	5,79	  | 350 ml  |
+|2	       | 2	              | Quilmes	           |    7,90 	  | 473 ml  |
+|3	       | 2	              | Budweiser zero     |    3,99	  | 269 ml  |
+|4 	       | 3 	              | Colorado Indica    |    4,72   	  | 350 ml  |
+
+
+### Tabela de estabelecimentos
+
+|idEstabelecimento (PK) | Logradouro	           | Bairro	            | nomeBar        |
+|-----------------------|--------------------------|------------------------|----------------|
+|1	                | Rua Américo Brasiliense  | Cambui	            | Tatu Bola      |
+|2	                | Rua Dr. Heitor Penteado  | Joaquim Egídio	    | Bar do Caixote |
+|3	                | Av. Barão de Itapura	   | Taquaral	            | Dom Brejas     |
+|4	                | Rua Horácio Leonardi	   | Barão Geraldo	    | Estação Barão  |
+
+
+### Tabela de requisições
+
+|IdRequisicao (PK) | idUsuario (FK) | IdProduto (FK) | idEstabelecimento (FK) | quantidadeRequisicao | dataRequisicao |
+|------------------|----------------|----------------|------------------------|----------------------|----------------|
+|1	           | 1       	    | 1 	     | 1	              | 1	             | 01/01/2023     |
+|2	           | 2	            | 2	             | 2	              | 1	             | 01/01/2023     |
+|3	           | 3	            | 3	             | 3	              | 1	             | 01/01/2023     |
+|4	           | 4	            | 2	             | 4	              | 1	             | 01/01/2023     |
+
+
+## Tabela produto bar
+
+|IdProduto PK FK | idEstabelecimento PK FK |
+|----------------|-------------------------|
+| 1	         | 1                       |
+| 2		 | 1                       |
+| 4		 | 1                       |
+| 2		 | 2                       |
+| 4		 | 2                       |
+| 1		 | 3                       |
+| 3		 | 3                       |
+| 1		 | 4                       |
+| 2		 | 4                       |
+| 3		 | 4                       |
 
 ## Rotas
 

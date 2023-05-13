@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.validation.Valid;
 import tech.afro.pretas.acheibreja.model.Estabelecimento;
@@ -42,21 +41,21 @@ public class EstabelecimentoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(estabelecimentoCriado);
 	}
 
-	@GetMapping("/buscar/all")
+	@GetMapping("/all")
 	public List<Estabelecimento> getAll() {
 		System.out.println("[ESTABELECIMENTO] BUSCANDO TODOS...");
 
 		return repository.findAll();
 	}
 
-	@GetMapping("/buscar/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Estabelecimento> getById(@PathVariable Long id) {
 		System.out.println("[ESTABELECIMENTO] BUSCANDO POR ID...");
 
 		Optional<Estabelecimento> estabelecimentoBuscado = repository.findById(id);
 
 		if (estabelecimentoBuscado.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 
 		return ResponseEntity.ok(estabelecimentoBuscado.get());
@@ -66,14 +65,13 @@ public class EstabelecimentoController {
 	public List<Estabelecimento> getByIdProduto(@PathVariable Long idProduto) {
 		System.out.println("[ESTABELECIMENTO] BUSCANDO POR ID PRODUTO...");
 
-		Optional<Produto> produtoBuscado = produtoRepository.findById(idProduto.toString());
+		Optional<Produto> produtoBuscado = produtoRepository.findById(idProduto);
 
 		if (produtoBuscado.isEmpty()) {
 			return List.of();
 		}
 
 		return repository.findByListaProduto(produtoBuscado.get());
-
 	}
 
 	@PutMapping("/atualizar/{id}")
@@ -86,23 +84,22 @@ public class EstabelecimentoController {
 		if (estabelecimentoBuscado.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		
+		estabelecimentoParaAtualizar.setIdEstabelecimento(estabelecimentoBuscado.get().getIdEstabelecimento());
 		Estabelecimento estabelecimentoSalvo = repository.save(estabelecimentoParaAtualizar);
-	
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(estabelecimentoSalvo);
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/deletar/{id}")
-	public void delete(@PathVariable Long id) {
+	public ResponseEntity<Estabelecimento> delete(@PathVariable Long id) {
 		System.out.println("[ESTABELECIMENTO] DELETANDO ESTABELECIMENTO...");
 
 		Optional<Estabelecimento> estabelecimentoBuscado = repository.findById(id);
 
 		if (estabelecimentoBuscado.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-
 		repository.deleteById(id);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }

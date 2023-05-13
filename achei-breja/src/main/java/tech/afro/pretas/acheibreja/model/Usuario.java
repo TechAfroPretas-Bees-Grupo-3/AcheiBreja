@@ -15,21 +15,19 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
 	private Long id;
-	
+
 	@Column(name = "nome_completo", nullable = false)
 	private String nomeCompleto;
-	
+
 	@Column(name = "email", nullable = false)
 	private String email;
-	
+
 	@Column(name = "senha", nullable = false)
 	private String senha;
 
 	public Usuario() {
 		super();
 	}
-	
-	
 
 	public Usuario(Long id, String nomeCompleto, String email, String senha) {
 		super();
@@ -38,8 +36,6 @@ public class Usuario {
 		this.email = email;
 		this.senha = senha;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -72,6 +68,4 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
 }

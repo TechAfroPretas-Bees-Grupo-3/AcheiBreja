@@ -30,7 +30,11 @@ public class Requisicao {
 	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
 	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
-	private Usuario usuario;
+
+
+	//@ManyToOne
+	//@JoinColumn(name = "id_usuario")
+	//private Usuario usuario;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_produto",referencedColumnName = "id_produto", nullable = false)
@@ -44,18 +48,17 @@ public class Requisicao {
 	@JsonManagedReference
 	private Estabelecimento estabelecimento;
 	
-	
-	
+
 	@Column(name = "id_quantidade_requisicao")
 	private Long idQuantidadeRequisicao;
-	
+
 	@Column(name = "data_requisicao")
 	private Calendar dataRequisicao;
 
 	public Requisicao() {
 		super();
 	}
-	
+
 	public Requisicao(Long idRequisicao, Usuario usuario, Produto produto, Long idQuantidadeRequisicao,
 			Calendar dataRequisicao, Estabelecimento estabelecimento) {
 		super();

@@ -1,4 +1,3 @@
-RUN echo "criando docker do Java"
 FROM openjdk:17.0.1-jdk-oracle as build
 
 RUN echo "definindo pasta de trabalho"

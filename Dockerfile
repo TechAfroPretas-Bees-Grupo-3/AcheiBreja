@@ -10,7 +10,7 @@ COPY .mvn .mvn
 RUN echo "copiando arquivo pom.xml necessario para o build"
 COPY pom.xml .
 RUN echo "copiando diretorio src necessario para o build"
-COPY src src
+COPY achei-breja/src src
 
 RUN echo "listando o diretorio"
 RUN echo $(ls -l .)

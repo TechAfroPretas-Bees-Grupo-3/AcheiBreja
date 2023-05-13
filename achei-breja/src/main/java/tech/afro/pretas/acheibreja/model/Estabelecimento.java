@@ -3,11 +3,7 @@ package tech.afro.pretas.acheibreja.model;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import jakarta.persistence.CascadeType;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,7 +28,7 @@ public class Estabelecimento {
 	private String bairro;
 
 	@Column(nullable = false)
-	private String estabelecimento;
+	private String nome;
 	
 
 	@ManyToMany(mappedBy = "listaEstabelecimento", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) //EAGER força o jpa/hibernate buscar os produtos do estabelecimento assim que consulta o estabelecimento
@@ -49,12 +45,12 @@ public class Estabelecimento {
 	}
 	
 	//tirei o parametro do listaproduto e instanciei o conjunto hash set listaproduto para depois do objeto instanciado adicionar o elemento do conjunto (ovo ou a galinha) 
-	public Estabelecimento(Long idEstabelecimento, String logradouro, String bairro, String estabelecimento) {
+	public Estabelecimento(Long idEstabelecimento, String logradouro, String bairro, String nome) {
 		super();
 		this.idEstabelecimento = idEstabelecimento;
 		this.logradouro = logradouro;
 		this.bairro = bairro;
-		this.estabelecimento = estabelecimento;
+		this.nome = nome;
 		this.listaProduto = new HashSet<Produto>();
 	}
 
@@ -82,12 +78,12 @@ public class Estabelecimento {
 		this.bairro = bairro;
 	}
 
-	public String getEstabelecimento() {
-		return estabelecimento;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setEstabelecimento(String estabelecimento) {
-		this.estabelecimento = estabelecimento;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Set<Produto> getListaProduto() {

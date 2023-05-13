@@ -33,7 +33,7 @@ public class Produto {
 	private Double preco;
 
 	@Column(name = "volume_produto", nullable = false)
-	private String volumeProduto;
+	private String volume;
 
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
@@ -46,15 +46,8 @@ public class Produto {
 			joinColumns = { @JoinColumn(name = "id_produto") },
 			inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") }
 	)
+
 	@JsonIgnore
-
-
-	//@JsonIgnore
-	//@ManyToMany
-	//@JoinTable(name = "tb_produto_estabelecimento", joinColumns = {
-	//		@JoinColumn(name = "id_produto") }, inverseJoinColumns = { @JoinColumn(name = "id_estabelecimento") })
-
-
 	// define o atributo listaEndereco do tipo Set (Conjunto), sendo que
 	// esse conjunto só aceita objetos do tipo Estabelecimento
 	private Set<Estabelecimento> listaEstabelecimento;
@@ -64,22 +57,22 @@ public class Produto {
 	}
 
 
-	public Produto(Long id, String nome, Double preco, String volumeProduto, Categoria categoria) {
+	public Produto(Long id, String nome, Double preco, String volume, Categoria categoria) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
-		this.volumeProduto = volumeProduto;
+		this.volume = volume;
 		this.categoria = categoria;
 		this.listaEstabelecimento = new HashSet<Estabelecimento>();
 	}
 
-	public String getVolumeProduto() {
-		return volumeProduto;
+	public String getVolume() {
+		return volume;
 	}
 
-	public void setVolumeProduto(String volumeProduto) {
-		this.volumeProduto = volumeProduto;
+	public void setVolume(String volume) {
+		this.volume = volume;
 	}
 
 	public Long getId() {
@@ -121,10 +114,4 @@ public class Produto {
 	public void setListaEstabelecimento(Set<Estabelecimento> listaEstabelecimento) {
 		this.listaEstabelecimento = listaEstabelecimento;
 	}
-
-
-	public Produto findAllByTituloContainingIgnoreCase(String produto) {
-		return null;
-	}
-
 }

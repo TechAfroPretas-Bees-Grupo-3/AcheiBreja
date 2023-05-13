@@ -32,13 +32,13 @@ public class Requisicao {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_produto",referencedColumnName = "id_produto", nullable = false)
 	//@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Produto produto;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_estabelecimento",nullable = false)
 	@OneToOne(mappedBy = "requisicao", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Estabelecimento estabelecimento;
 	
 
